@@ -1,0 +1,10 @@
+from collections import Counter
+
+class Solution:
+    def topKFrequent(self, nums, k):
+        freq = Counter(nums)
+        top_k = freq.most_common(k)
+        result = []
+        for num, count in top_k:
+            result.append(num)
+        return result
