@@ -1,0 +1,18 @@
+class Solution(object):
+    def wordBreak(self, s, wordDict):
+        word_set = set(wordDict)
+        emp = {}
+        def backtrack(start):
+            if start in emp:
+                return emp[start]
+            if start == len(s):
+                return [""]
+            sentences = []
+            for end in range(start + 1, len(s) + 1):
+                word = s[start:end]
+                if word in word_set:
+                    for sub in backtrack(end):
+                        sentences.append(word + (" " + sub if sub else ""))
+            emp[start] = sentences
+            return sentences
+        return backtrack(0)
